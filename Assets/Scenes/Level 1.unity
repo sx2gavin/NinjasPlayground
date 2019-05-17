@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9483,16 +9483,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4082264628536386951, guid: bcb42573a68424a4d8bfef61c861796e,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 4082264628536386946, guid: bcb42573a68424a4d8bfef61c861796e,
         type: 3}
       propertyPath: cameraRig
       value: 
       objectReference: {fileID: 1134139382}
+    - target: {fileID: 4082264628536386951, guid: bcb42573a68424a4d8bfef61c861796e,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4082264628536386947, guid: bcb42573a68424a4d8bfef61c861796e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9704,6 +9704,11 @@ PrefabInstance:
     - target: {fileID: 7318135809815939186, guid: 11542bfb916e54bde90f999eb850bfde,
         type: 3}
       propertyPath: m_attachObject
+      value: 
+      objectReference: {fileID: 32891152}
+    - target: {fileID: 7318135809815939186, guid: 11542bfb916e54bde90f999eb850bfde,
+        type: 3}
+      propertyPath: attachObject
       value: 
       objectReference: {fileID: 32891152}
     - target: {fileID: 7318135809815939187, guid: 11542bfb916e54bde90f999eb850bfde,

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2086961946867593276}
   - component: {fileID: 5567717528269650462}
   - component: {fileID: 7306346319639022276}
-  - component: {fileID: 3868716224536053450}
   m_Layer: 0
   m_Name: Left Arm
   m_TagString: Untagged
@@ -78,19 +77,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3868716224536053450
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924356209163914170}
-  m_Material: {fileID: 13400000, guid: 7145dd49818b14340ab3a0675a875cbe, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4082264628536386951
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,9 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2779127169a142f695a6d61b217015b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  speed: 700
   cameraRig: {fileID: 0}
-  jumpHeight: 20
+  jumpHeight: 30
 --- !u!1 &5836038616300356617
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +215,6 @@ GameObject:
   - component: {fileID: 2204306745622589670}
   - component: {fileID: 6532029332779274880}
   - component: {fileID: 5666662668823731550}
-  - component: {fileID: 7209062402793671580}
   m_Layer: 0
   m_Name: Right Arm
   m_TagString: Untagged
@@ -296,16 +281,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7209062402793671580
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5836038616300356617}
-  m_Material: {fileID: 13400000, guid: 7145dd49818b14340ab3a0675a875cbe, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
