@@ -9,8 +9,10 @@ public class CameraRig : MonoBehaviour
     [SerializeField] float rotationSpeed = 10.0f;
     [SerializeField] float cameraDistance = 10.0f;
     [SerializeField][Range(0f,1f)] float rotationSmoothness = 0.5f;
+    [SerializeField] float closeUpCameraAdjustment = 0.2f;
 
     private Vector3 rotation;
+    private Camera childCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +20,11 @@ public class CameraRig : MonoBehaviour
         transform.position = attachObject.transform.position;
         transform.rotation = Quaternion.identity;
 
-        var cameraChildren = GetComponentInChildren<Camera>()?.gameObject;
-        if (cameraChildren != null)
+        childCamera = GetComponentInChildren<Camera>();
+        if (childCamera != null)
         {
-            cameraChildren.transform.rotation = Quaternion.identity;
-            cameraChildren.transform.position = transform.position + new Vector3(0, 0, -cameraDistance);
+            childCamera.transform.rotation = Quaternion.identity;
+            childCamera.transform.position = transform.position + new Vector3(0, 0, -cameraDistance);
         }
 
         rotation = transform.rotation.eulerAngles;
@@ -30,6 +32,12 @@ public class CameraRig : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        RotateCameraRig();
+        CheckForObjectsInFrontOfCamera();
+    }
+
+    private void RotateCameraRig()
     {
         transform.position = attachObject.transform.position;
 
@@ -42,5 +50,17 @@ public class CameraRig : MonoBehaviour
         rotation.y += x * rotationSpeed;
 
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotation), 0.5f);
+    }
+
+    private void CheckForObjectsInFrontOfCamera()
+    {
+        if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, cameraDistance))
+        {
+            childCamera.transform.localPosition = new Vector3(0, 0, -hit.distance + closeUpCameraAdjustment);
+        } 
+        else
+        {
+            childCamera.transform.localPosition = new Vector3(0, 0, -cameraDistance);
+        }
     }
 }
