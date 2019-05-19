@@ -462,6 +462,11 @@ PrefabInstance:
       propertyPath: m_attachObject
       value: 
       objectReference: {fileID: 1658414010}
+    - target: {fileID: 7318135809815939186, guid: 11542bfb916e54bde90f999eb850bfde,
+        type: 3}
+      propertyPath: attachObject
+      value: 
+      objectReference: {fileID: 1658414010}
     - target: {fileID: 7318135809815939187, guid: 11542bfb916e54bde90f999eb850bfde,
         type: 3}
       propertyPath: m_LocalPosition.x
