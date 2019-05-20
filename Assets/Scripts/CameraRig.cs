@@ -49,7 +49,7 @@ public class CameraRig : MonoBehaviour
         rotation.x = Mathf.Clamp(rotation.x, -90, 90);
         rotation.y += x * rotationSpeed;
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotation), 0.5f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotation), rotationSmoothness);
     }
 
     private void CheckForObjectsInFrontOfCamera()
@@ -60,6 +60,7 @@ public class CameraRig : MonoBehaviour
         } 
         else
         {
+            var layer = LayerMask.NameToLayer("Structure");
             childCamera.transform.localPosition = new Vector3(0, 0, -cameraDistance);
         }
     }
