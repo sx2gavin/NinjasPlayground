@@ -10,6 +10,7 @@ public class CameraRig : MonoBehaviour
     [SerializeField] float cameraDistance = 10.0f;
     [SerializeField][Range(0f,1f)] float rotationSmoothness = 0.5f;
     [SerializeField] float closeUpCameraAdjustment = 0.2f;
+    [SerializeField] float anchorHeight = 2f;
 
     private Vector3 rotation;
     private Camera childCamera;
@@ -17,17 +18,22 @@ public class CameraRig : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = attachObject.transform.position;
+        FollowAttachObject();
         transform.rotation = Quaternion.identity;
 
         childCamera = GetComponentInChildren<Camera>();
         if (childCamera != null)
         {
             childCamera.transform.rotation = Quaternion.identity;
-            childCamera.transform.position = transform.position + new Vector3(0, 0, -cameraDistance);
+            childCamera.transform.localPosition = new Vector3(0, 0, -cameraDistance);
         }
 
         rotation = transform.rotation.eulerAngles;
+    }
+
+    private void FollowAttachObject()
+    {
+        transform.position = attachObject.transform.position + new Vector3(0, anchorHeight, 0);
     }
 
     // Update is called once per frame
@@ -39,8 +45,7 @@ public class CameraRig : MonoBehaviour
 
     private void RotateCameraRig()
     {
-        transform.position = attachObject.transform.position;
-
+        FollowAttachObject();
         float x = Input.GetAxis("Mouse X");
         float y = Input.GetAxis("Mouse Y");
 

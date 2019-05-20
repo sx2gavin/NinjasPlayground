@@ -59,6 +59,10 @@ public class Player : MonoBehaviour
             movingVelocity.y = m_rigidBody.velocity.y;
             m_rigidBody.velocity = movingVelocity;
         }
+        else
+        {
+            m_rigidBody.velocity = new Vector3(0, m_rigidBody.velocity.y, 0);
+        }
     }
 
     private void Jump()
