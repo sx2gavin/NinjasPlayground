@@ -11,8 +11,10 @@ public class Player : MonoBehaviour
     [SerializeField] CameraRig cameraRig;
     [SerializeField] float jumpHeight = 20.0f;
     [SerializeField] [Range(0f, 1f)] float playerRotationSmoothness = 0.5f;
+    [SerializeField] Throwable throwableWeapon;
 
     Rigidbody m_rigidBody;
+    Animator animator;
     bool m_isInAir = false;
 
     private const float BIG_EPSILON = 0.00001f;
@@ -21,11 +23,32 @@ public class Player : MonoBehaviour
     void Start()
     {
         m_rigidBody = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Attack();
+        Throw();
+    }
+
+    private void Throw()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            var inFrontOfPlayer = transform.position + transform.forward * 2 + transform.up;
+            var throwable = Instantiate(throwableWeapon, inFrontOfPlayer, transform.rotation);
+            throwable.Fly(inFrontOfPlayer, transform.forward);
+        }
+    }
+
+    private void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            animator?.Play("PlayerAnimation");
+        }
     }
 
     private void FixedUpdate()
