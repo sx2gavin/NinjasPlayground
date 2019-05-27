@@ -6,17 +6,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
+
+    [SerializeField] CameraRig cameraRig;
+    [SerializeField] Throwable throwableWeapon;
     [SerializeField] float speed = 500.0f;
     [SerializeField] float acceleration = 2.0f;
-    [SerializeField] CameraRig cameraRig;
     [SerializeField] float jumpHeight = 20.0f;
+    [SerializeField] float dodgeDistance = 20.0f;
+    [SerializeField] float dodgeSpeed = 10f;
     [SerializeField] [Range(0f, 1f)] float playerRotationSmoothness = 0.5f;
-    [SerializeField] Throwable throwableWeapon;
 
     Rigidbody m_rigidBody;
     Animator animator;
     bool m_isInAir = false;
-
+    bool isAttacking = false;
+    bool isDodging = false;
     private const float BIG_EPSILON = 0.00001f;
 
     // Start is called before the first frame update
@@ -30,7 +34,34 @@ public class Player : MonoBehaviour
     void Update()
     {
         Attack();
+        Dodge();
         Throw();
+    }
+
+    private void Dodge()
+    {
+        if (Input.GetButtonDown("Dodge"))
+        {
+            StartCoroutine(DodgeOvertime());
+        }
+    }
+
+    private IEnumerator DodgeOvertime()
+    {
+        isDodging = true;
+        m_rigidBody.velocity = Vector3.zero;
+
+        float travelledDistance = 0.0f;
+
+        while(travelledDistance < dodgeDistance)
+        {
+            var dodgedDistanceThisFrame = dodgeSpeed * Time.deltaTime;
+            transform.position += transform.forward * dodgedDistanceThisFrame;
+            travelledDistance += dodgedDistanceThisFrame;
+            yield return null;
+        }
+
+        isDodging = false;
     }
 
     private void Throw()
@@ -47,14 +78,25 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            animator?.Play("PlayerAnimation");
+            animator?.Play("Attack");
+            isAttacking = true;
+        }
+
+        var animatorstate = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (animatorstate.IsName("Idle"))
+        {
+            isAttacking = false;
         }
     }
 
     private void FixedUpdate()
     {
         m_isInAir = CheckInAIr();
-        Move();
+        if (!isAttacking && !isDodging)
+        {
+            Move();
+        }
         Jump();
     }
 
@@ -81,11 +123,15 @@ public class Player : MonoBehaviour
 
             movingVelocity.y = m_rigidBody.velocity.y;
             m_rigidBody.velocity = movingVelocity;
+
+            animator.SetBool("IsRunning", true);
         }
         else
         {
             m_rigidBody.velocity = new Vector3(0, m_rigidBody.velocity.y, 0);
+            animator.SetBool("IsRunning", false);
         }
+
     }
 
     private void Jump()

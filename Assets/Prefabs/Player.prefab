@@ -255,13 +255,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2779127169a142f695a6d61b217015b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 600
-  acceleration: 2
   cameraRig: {fileID: 0}
-  jumpHeight: 20
-  playerRotationSmoothness: 0.5
   throwableWeapon: {fileID: 8782567671319346865, guid: 0e17f125c783345a58edbfe16728cd1e,
     type: 3}
+  speed: 600
+  acceleration: 2
+  jumpHeight: 20
+  dashDistance: 20
+  playerRotationSmoothness: 0.5
 --- !u!1 &4340815972457534643
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,26 +560,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2429252745118303086, guid: c2f1137341b0841888851acedbe5e47c,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720834600498460264, guid: c2f1137341b0841888851acedbe5e47c,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070150953170090650, guid: c2f1137341b0841888851acedbe5e47c,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5180425070095270668, guid: c2f1137341b0841888851acedbe5e47c,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2f1137341b0841888851acedbe5e47c, type: 3}

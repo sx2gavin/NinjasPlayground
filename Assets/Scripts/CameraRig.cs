@@ -33,19 +33,20 @@ public class CameraRig : MonoBehaviour
 
     private void FollowAttachObject()
     {
-        transform.position = attachObject.transform.position + new Vector3(0, anchorHeight, 0);
+        var newPosition = attachObject.transform.position + new Vector3(0, anchorHeight, 0);
+        transform.position = newPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
+        FollowAttachObject();
         RotateCameraRig();
         CheckForObjectsInFrontOfCamera();
     }
 
     private void RotateCameraRig()
     {
-        FollowAttachObject();
         float x = Input.GetAxis("Mouse X");
         float y = Input.GetAxis("Mouse Y");
 
