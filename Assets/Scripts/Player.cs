@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     Rigidbody m_rigidBody;
     Animator animator;
     bool m_isInAir = false;
-    bool isDodging = false;
+    bool m_isDodging = false;
     private const float BIG_EPSILON = 0.00001f;
 
     // Start is called before the first frame update
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("IsBlocking", true);
             animator?.Play("Start Blocking");
-        } 
+        }
         else if (Input.GetButtonUp("Block"))
         {
             animator?.SetBool("IsBlocking", false);
@@ -61,12 +61,12 @@ public class Player : MonoBehaviour
 
     private IEnumerator DodgeOvertime()
     {
-        isDodging = true;
+        m_isDodging = true;
         m_rigidBody.velocity = Vector3.zero;
 
         float travelledDistance = 0.0f;
 
-        while(travelledDistance < dodgeDistance)
+        while (travelledDistance < dodgeDistance)
         {
             var dodgedDistanceThisFrame = dodgeSpeed * Time.deltaTime;
             transform.position += transform.forward * dodgedDistanceThisFrame;
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
             yield return null;
         }
 
-        isDodging = false;
+        m_isDodging = false;
     }
 
     private void Throw()
@@ -98,7 +98,10 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         m_isInAir = CheckInAIr();
-        Move();
+        if (!m_isDodging)
+        {
+            Move();
+        }
         Jump();
     }
 
@@ -133,16 +136,31 @@ public class Player : MonoBehaviour
             m_rigidBody.velocity = new Vector3(0, m_rigidBody.velocity.y, 0);
             animator.SetBool("IsRunning", false);
         }
-
     }
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !m_isInAir)
         {
             var currentVelocity = m_rigidBody.velocity;
             currentVelocity.y = jumpHeight;
             m_rigidBody.velocity = currentVelocity;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        {
+            m_isInAir = false;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        {
+            m_isInAir = true;
         }
     }
 }

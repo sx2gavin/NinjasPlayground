@@ -66,7 +66,6 @@ public class CameraRig : MonoBehaviour
         } 
         else
         {
-            var layer = LayerMask.NameToLayer("Structure");
             childCamera.transform.localPosition = new Vector3(0, 0, -cameraDistance);
         }
     }

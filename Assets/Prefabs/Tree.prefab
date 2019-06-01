@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4211423005775277475}
   - component: {fileID: 4211423005775277474}
   - component: {fileID: 4211423005775277473}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bottom Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,8 +483,10 @@ MonoBehaviour:
   assetGuid: 
   m_IsSelectable: 1
   m_SelectedFaces: 
-  m_SelectedEdges: []
-  m_SelectedVertices: 
+  m_SelectedEdges:
+  - a: 14
+    b: 13
+  m_SelectedVertices: 0e0000000d000000
 --- !u!64 &4211423005775277473
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -512,7 +514,7 @@ GameObject:
   - component: {fileID: 4211423005887346598}
   - component: {fileID: 4211423005887346597}
   - component: {fileID: 4211423005887346596}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Middle Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1011,7 +1013,7 @@ GameObject:
   - component: {fileID: 4211423006088024796}
   - component: {fileID: 4211423006088024795}
   - component: {fileID: 4211423006088024794}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Top Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1508,7 +1510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4211423006453495998}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1524,7 +1526,7 @@ Transform:
   m_GameObject: {fileID: 4211423006453495997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.78, y: 8.6, z: 0.49}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.1, z: 1}
   m_Children:
   - {fileID: 4211423006984353678}
   - {fileID: 4211423006088024793}
@@ -1546,7 +1548,7 @@ GameObject:
   - component: {fileID: 4211423006984353665}
   - component: {fileID: 4211423006984353664}
   - component: {fileID: 4211423006984353679}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Trunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
