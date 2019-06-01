@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
     Rigidbody m_rigidBody;
     Animator animator;
     bool m_isInAir = false;
-    bool isAttacking = false;
     bool isDodging = false;
     private const float BIG_EPSILON = 0.00001f;
 
@@ -34,8 +33,22 @@ public class Player : MonoBehaviour
     void Update()
     {
         Attack();
+        Blocking();
         Dodge();
         Throw();
+    }
+
+    private void Blocking()
+    {
+        if (Input.GetButtonDown("Block"))
+        {
+            animator.SetBool("IsBlocking", true);
+            animator?.Play("Start Blocking");
+        } 
+        else if (Input.GetButtonUp("Block"))
+        {
+            animator?.SetBool("IsBlocking", false);
+        }
     }
 
     private void Dodge()
@@ -79,24 +92,13 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             animator?.Play("Attack");
-            isAttacking = true;
-        }
-
-        var animatorstate = animator.GetCurrentAnimatorStateInfo(0);
-
-        if (animatorstate.IsName("Idle"))
-        {
-            isAttacking = false;
         }
     }
 
     private void FixedUpdate()
     {
         m_isInAir = CheckInAIr();
-        if (!isAttacking && !isDodging)
-        {
-            Move();
-        }
+        Move();
         Jump();
     }
 
@@ -136,7 +138,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && !m_isInAir)
+        if (Input.GetButtonDown("Jump"))
         {
             var currentVelocity = m_rigidBody.velocity;
             currentVelocity.y = jumpHeight;
