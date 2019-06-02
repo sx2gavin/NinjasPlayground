@@ -34,11 +34,11 @@ public class CameraRig : MonoBehaviour
     private void FollowAttachObject()
     {
         var newPosition = attachObject.transform.position + new Vector3(0, anchorHeight, 0);
-        transform.position = newPosition;
+        transform.position = Vector3.Lerp(transform.position, newPosition, 0.3f);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         FollowAttachObject();
         RotateCameraRig();

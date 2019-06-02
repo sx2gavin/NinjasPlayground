@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] Player m_player;
     [SerializeField] float m_farDistanceThreshHold = 10f;
-    [SerializeField] float m_closeDistanceThreshHold = 1f;
-    [SerializeField] float m_attackRange = 2f;
+    [SerializeField] float m_closeDistanceThreshHold = 3f;
+    [SerializeField] float m_attackRange = 3f;
     [SerializeField] float m_movingSpeed = 200f;
     [SerializeField] float m_interpolationRate = 0.5f;
 
@@ -76,6 +76,7 @@ public class Enemy : MonoBehaviour
     {
         if (m_distanceWithPlayer < m_attackRange)
         {
+            m_rigidbodyComponent.velocity = Vector3.zero;
             m_animator?.Play("Attack");
             return true;
         }

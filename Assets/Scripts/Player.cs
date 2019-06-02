@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
+    private const float BIG_EPSILON = 0.00001f;
 
     [SerializeField] CameraRig cameraRig;
     [SerializeField] Throwable throwableWeapon;
@@ -17,16 +18,17 @@ public class Player : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] float playerRotationSmoothness = 0.5f;
 
     Rigidbody m_rigidBody;
-    Animator animator;
+    Animator m_animator;
+    Weapon m_weapon;
     bool m_isInAir = false;
     bool m_isDodging = false;
-    private const float BIG_EPSILON = 0.00001f;
 
     // Start is called before the first frame update
     void Start()
     {
         m_rigidBody = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        m_animator = GetComponent<Animator>();
+        m_weapon = GetComponentInChildren<Weapon>();
     }
 
     // Update is called once per frame
@@ -34,7 +36,6 @@ public class Player : MonoBehaviour
     {
         Attack();
         Blocking();
-        Dodge();
         Throw();
     }
 
@@ -42,12 +43,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Block"))
         {
-            animator.SetBool("IsBlocking", true);
-            animator?.Play("Start Blocking");
+            m_animator.SetBool("IsBlocking", true);
+            m_animator?.Play("Start Blocking");
         }
         else if (Input.GetButtonUp("Block"))
         {
-            animator?.SetBool("IsBlocking", false);
+            m_animator?.SetBool("IsBlocking", false);
         }
     }
 
@@ -71,7 +72,7 @@ public class Player : MonoBehaviour
             var dodgedDistanceThisFrame = dodgeSpeed * Time.deltaTime;
             transform.position += transform.forward * dodgedDistanceThisFrame;
             travelledDistance += dodgedDistanceThisFrame;
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
 
         m_isDodging = false;
@@ -91,13 +92,24 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            animator?.Play("Attack");
+            m_animator?.SetTrigger("Attack");
         }
+    }
+
+    private void BeginAttacking()
+    {
+        m_weapon?.Swing();
+    }
+
+    private void EndAttacking()
+    {
+        m_weapon?.EndSwing();
     }
 
     private void FixedUpdate()
     {
         m_isInAir = CheckInAIr();
+        Dodge();
         if (!m_isDodging)
         {
             Move();
@@ -129,12 +141,12 @@ public class Player : MonoBehaviour
             movingVelocity.y = m_rigidBody.velocity.y;
             m_rigidBody.velocity = movingVelocity;
 
-            animator.SetBool("IsRunning", true);
+            m_animator.SetBool("IsRunning", true);
         }
         else
         {
             m_rigidBody.velocity = new Vector3(0, m_rigidBody.velocity.y, 0);
-            animator.SetBool("IsRunning", false);
+            m_animator.SetBool("IsRunning", false);
         }
     }
 
