@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 7659860315552418221}
   - component: {fileID: 3903239362989975683}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

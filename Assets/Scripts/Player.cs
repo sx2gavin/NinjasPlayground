@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     Weapon m_weapon;
     bool m_isInAir = false;
     bool m_isDodging = false;
+    bool m_isAttacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +64,7 @@ public class Player : MonoBehaviour
     private IEnumerator DodgeOvertime()
     {
         m_isDodging = true;
-        m_rigidBody.velocity = Vector3.zero;
+        m_rigidBody.velocity = new Vector3(0, m_rigidBody.velocity.y, 0);
 
         float travelledDistance = 0.0f;
 
@@ -90,36 +91,36 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !m_isAttacking)
         {
             m_animator?.SetTrigger("Attack");
         }
     }
 
-    private void BeginAttacking()
+    private void BeginSwing()
     {
+        m_isAttacking = true;
         m_weapon?.Swing();
     }
 
-    private void EndAttacking()
+    private void EndSwing()
     {
         m_weapon?.EndSwing();
     }
 
+    private void EndAttackAnimation()
+    {
+        m_isAttacking = false;
+    }
+
     private void FixedUpdate()
     {
-        m_isInAir = CheckInAIr();
         Dodge();
         if (!m_isDodging)
         {
             Move();
         }
         Jump();
-    }
-
-    private bool CheckInAIr()
-    {
-        return Math.Abs(m_rigidBody.velocity.y) >= BIG_EPSILON;
     }
 
     private void Move()

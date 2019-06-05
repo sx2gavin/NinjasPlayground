@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2086961946867593276}
   - component: {fileID: 5567717528269650462}
   - component: {fileID: 7306346319639022276}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Right Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 611738740126387545}
   - component: {fileID: 3633091659051432250}
   - component: {fileID: 902784452638633889}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Right Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,8 @@ GameObject:
   - component: {fileID: 4615480572856955784}
   - component: {fileID: 32891154}
   - component: {fileID: 4082264628536386946}
-  m_Layer: 0
+  - component: {fileID: 32891158}
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -260,9 +261,25 @@ MonoBehaviour:
     type: 3}
   speed: 600
   acceleration: 2
-  jumpHeight: 20
-  dashDistance: 20
+  jumpHeight: 30
+  dodgeDistance: 6
+  dodgeSpeed: 20
   playerRotationSmoothness: 0.5
+--- !u!114 &32891158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082264628536386951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dc2afc4f8e749a7b6620913a3de279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_hitPoints: 200
+  m_healthSlider: {fileID: 0}
+  m_currentHitPoints: 0
 --- !u!1 &4340815972457534643
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +291,7 @@ GameObject:
   - component: {fileID: 4573453283464784395}
   - component: {fileID: 7225679525998496969}
   - component: {fileID: 2390884338998822399}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Left Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +368,7 @@ GameObject:
   - component: {fileID: 2204306745622589670}
   - component: {fileID: 6532029332779274880}
   - component: {fileID: 5666662668823731550}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Left Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +445,7 @@ GameObject:
   - component: {fileID: 1152869369572465787}
   - component: {fileID: 520886601355979887}
   - component: {fileID: 6566101750442757532}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -506,6 +523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 2098245912771792356, guid: c2f1137341b0841888851acedbe5e47c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5363884141041941136, guid: c2f1137341b0841888851acedbe5e47c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -560,6 +582,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089900459387709765, guid: c2f1137341b0841888851acedbe5e47c,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 2.105505
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089900459387709765, guid: c2f1137341b0841888851acedbe5e47c,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.004951509
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089900459387709765, guid: c2f1137341b0841888851acedbe5e47c,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.0030104313
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089900459387709765, guid: c2f1137341b0841888851acedbe5e47c,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.092430145
+      objectReference: {fileID: 0}
+    - target: {fileID: 126762470254755273, guid: c2f1137341b0841888851acedbe5e47c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 91875658261955666, guid: c2f1137341b0841888851acedbe5e47c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308073744867495357, guid: c2f1137341b0841888851acedbe5e47c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360740106756267784, guid: c2f1137341b0841888851acedbe5e47c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2f1137341b0841888851acedbe5e47c, type: 3}

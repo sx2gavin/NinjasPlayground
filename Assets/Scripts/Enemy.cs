@@ -14,9 +14,11 @@ public class Enemy : MonoBehaviour
 
     Node m_behaviorTree;
     float m_distanceWithPlayer;
-
     Rigidbody m_rigidbodyComponent;
     Animator m_animator;
+    Weapon m_weapon;
+
+    bool m_isAttacking = false;
 
     private void Awake()
     {
@@ -38,6 +40,7 @@ public class Enemy : MonoBehaviour
     {
         m_rigidbodyComponent = GetComponent<Rigidbody>();
         m_animator = GetComponent<Animator>();
+        m_weapon = GetComponentInChildren<Weapon>();
     }
 
     // Update is called once per frame
@@ -53,7 +56,7 @@ public class Enemy : MonoBehaviour
 
     private bool Move()
     {
-        if (m_distanceWithPlayer < m_farDistanceThreshHold && m_distanceWithPlayer > m_closeDistanceThreshHold)
+        if (m_distanceWithPlayer < m_farDistanceThreshHold && m_distanceWithPlayer > m_closeDistanceThreshHold && !m_isAttacking)
         {
             var fromMeToTarget = m_player.transform.position - transform.position;
             fromMeToTarget.y = 0;
@@ -84,5 +87,21 @@ public class Enemy : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private void BeginAttacking()
+    {
+        m_isAttacking = true;
+        m_weapon?.Swing();
+    }
+
+    private void EndDamage()
+    {
+        m_weapon?.EndSwing();
+    }
+
+    private void EndAttacking()
+    {
+        m_isAttacking = false;
     }
 }
