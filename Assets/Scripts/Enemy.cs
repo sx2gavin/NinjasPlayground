@@ -17,12 +17,14 @@ public class Enemy : MonoBehaviour
     Rigidbody m_rigidbodyComponent;
     Animator m_animator;
     Weapon m_weapon;
+    Health m_health;
 
     bool m_isAttacking = false;
 
     private void Awake()
     {
         DefineBehaviorTree();
+        m_player = FindObjectOfType<Player>();
     }
 
     private void DefineBehaviorTree()
@@ -41,6 +43,7 @@ public class Enemy : MonoBehaviour
         m_rigidbodyComponent = GetComponent<Rigidbody>();
         m_animator = GetComponent<Animator>();
         m_weapon = GetComponentInChildren<Weapon>();
+        m_health = GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -56,7 +59,7 @@ public class Enemy : MonoBehaviour
 
     private bool Move()
     {
-        if (m_distanceWithPlayer < m_farDistanceThreshHold && m_distanceWithPlayer > m_closeDistanceThreshHold && !m_isAttacking)
+        if (m_player != null && m_distanceWithPlayer < m_farDistanceThreshHold && m_distanceWithPlayer > m_closeDistanceThreshHold && !m_isAttacking)
         {
             var fromMeToTarget = m_player.transform.position - transform.position;
             fromMeToTarget.y = 0;
@@ -103,5 +106,18 @@ public class Enemy : MonoBehaviour
     private void EndAttacking()
     {
         m_isAttacking = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var weapon = other.GetComponent<PlayerWeapon>();
+        if (weapon != null)
+        {
+            m_health.TakeDamage(weapon.GetDamage());
+            if (m_health.GetCurrentHitPoints() <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

@@ -17,12 +17,17 @@ public class Player : MonoBehaviour
     [SerializeField] float dodgeSpeed = 10f;
     [SerializeField] [Range(0f, 1f)] float playerRotationSmoothness = 0.5f;
 
+    [SerializeField] int m_dodgeEnergyConsumption = 10;
+    [SerializeField] int m_attackEnergyConsumption = 20;
+
     Rigidbody m_rigidBody;
     Animator m_animator;
     Weapon m_weapon;
     bool m_isInAir = false;
     bool m_isDodging = false;
     bool m_isAttacking = false;
+    Energy m_energy;
+    Health m_health;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,8 @@ public class Player : MonoBehaviour
         m_rigidBody = GetComponent<Rigidbody>();
         m_animator = GetComponent<Animator>();
         m_weapon = GetComponentInChildren<Weapon>();
+        m_health = GetComponent<Health>();
+        m_energy = GetComponent<Energy>();
     }
 
     // Update is called once per frame
@@ -57,7 +64,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Dodge"))
         {
-            StartCoroutine(DodgeOvertime());
+            if (m_energy.ConsumeEnergy(m_dodgeEnergyConsumption))
+            {
+                StartCoroutine(DodgeOvertime());
+            }
         }
     }
 
@@ -93,7 +103,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && !m_isAttacking)
         {
-            m_animator?.SetTrigger("Attack");
+            if (m_energy.ConsumeEnergy(m_attackEnergyConsumption))
+            {
+                m_animator?.SetTrigger("Attack");
+            }
         }
     }
 
@@ -174,6 +187,19 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
             m_isInAir = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var weapon = other.GetComponent<EnemyWeapon>();
+        if (weapon != null)
+        {
+            m_health.TakeDamage(weapon.GetDamage());
+            if (m_health.GetCurrentHitPoints() <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -222,7 +222,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4282924360612032600
 Canvas:
@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 6876320882330517885}
   - component: {fileID: 6876320882330517884}
   - component: {fileID: 6876320882330517883}
+  - component: {fileID: 254648222948112218}
   m_Layer: 2
   m_Name: Hammer
   m_TagString: Untagged
@@ -474,6 +475,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &254648222948112218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6876320882330517881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673d17f5f97814d6289631d08fb65c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_damage: 10
 --- !u!1 &6876320883473711988
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +577,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_hitPoints: 100
   m_healthSlider: {fileID: 3903239362989975683}
-  m_currentHitPoints: 0
 --- !u!54 &196781125
 Rigidbody:
   m_ObjectHideFlags: 0

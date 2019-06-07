@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 32891154}
   - component: {fileID: 4082264628536386946}
   - component: {fileID: 32891158}
+  - component: {fileID: 32891159}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -262,9 +263,11 @@ MonoBehaviour:
   speed: 600
   acceleration: 2
   jumpHeight: 30
-  dodgeDistance: 6
-  dodgeSpeed: 20
+  dodgeDistance: 4
+  dodgeSpeed: 40
   playerRotationSmoothness: 0.5
+  m_dodgeEnergyConsumption: 10
+  m_attackEnergyConsumption: 20
 --- !u!114 &32891158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +282,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_hitPoints: 200
   m_healthSlider: {fileID: 0}
-  m_currentHitPoints: 0
+--- !u!114 &32891159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082264628536386951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae7b1f9f14a6846c4a45cc49e9f0f80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_energyPoints: 100
+  m_energySlider: {fileID: 0}
+  m_regenerateSpeed: 5
 --- !u!1 &4340815972457534643
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,22 +603,22 @@ PrefabInstance:
     - target: {fileID: 2089900459387709765, guid: c2f1137341b0841888851acedbe5e47c,
         type: 3}
       propertyPath: m_Size.z
-      value: 2.105505
+      value: 2.1668
       objectReference: {fileID: 0}
     - target: {fileID: 2089900459387709765, guid: c2f1137341b0841888851acedbe5e47c,
         type: 3}
       propertyPath: m_Center.x
-      value: -0.004951509
+      value: -0.004951484
       objectReference: {fileID: 0}
     - target: {fileID: 2089900459387709765, guid: c2f1137341b0841888851acedbe5e47c,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.0030104313
+      value: 0.0030103559
       objectReference: {fileID: 0}
     - target: {fileID: 2089900459387709765, guid: c2f1137341b0841888851acedbe5e47c,
         type: 3}
       propertyPath: m_Center.z
-      value: -0.092430145
+      value: -0.123078234
       objectReference: {fileID: 0}
     - target: {fileID: 126762470254755273, guid: c2f1137341b0841888851acedbe5e47c,
         type: 3}

@@ -8,8 +8,7 @@ public class Health : MonoBehaviour
     [SerializeField] int m_hitPoints = 100;
     [SerializeField] Slider m_healthSlider;
 
-    [SerializeField] int m_currentHitPoints;
-
+    int m_currentHitPoints;
     Weapon m_weapon = null;
 
     private void Start()
@@ -21,7 +20,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         m_currentHitPoints -= damage;
         if (m_healthSlider != null)
@@ -30,26 +29,8 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public int GetCurrentHitPoints()
     {
-        var weapon = other.GetComponent<Weapon>();
-        if (weapon != null && weapon != m_weapon)
-        {
-            m_weapon = weapon;
-            TakeDamage(weapon.GetDamage());
-            if (m_currentHitPoints <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        var weapon = other.GetComponent<Weapon>();
-        if (weapon == m_weapon)
-        {
-            m_weapon = null;
-        }
+        return m_currentHitPoints;
     }
 }
