@@ -8,8 +8,9 @@ public class Player : MonoBehaviour
 {
     private const float BIG_EPSILON = 0.00001f;
 
-    [SerializeField] CameraRig cameraRig;
+    [SerializeField] CameraRig m_cameraRig;
     [SerializeField] Throwable throwableWeapon;
+    [SerializeField] Enemy m_targetEnemy;
     [SerializeField] float speed = 500.0f;
     [SerializeField] float acceleration = 2.0f;
     [SerializeField] float jumpHeight = 20.0f;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] int m_dodgeEnergyConsumption = 10;
     [SerializeField] int m_attackEnergyConsumption = 20;
+    [SerializeField] int m_blockingEnergyConsumption = 3;
 
     Rigidbody m_rigidBody;
     Animator m_animator;
@@ -26,6 +28,7 @@ public class Player : MonoBehaviour
     bool m_isInAir = false;
     bool m_isDodging = false;
     bool m_isAttacking = false;
+    bool m_isLockingTarget = false;
     Energy m_energy;
     Health m_health;
 
@@ -44,7 +47,28 @@ public class Player : MonoBehaviour
     {
         Attack();
         Blocking();
+        Target();
         Throw();
+    }
+
+    private void Target()
+    {
+        if (Input.GetButtonDown("Lock Target"))
+        {
+            // get the selected target here...
+
+            m_isLockingTarget = !m_isLockingTarget;
+        }
+
+        if (m_isLockingTarget)
+        {
+            m_cameraRig.Target = m_targetEnemy.transform;
+            m_cameraRig.LockingTarget = true;
+        } 
+        else
+        {
+            m_cameraRig.LockingTarget = false;
+        }
     }
 
     private void Blocking()
@@ -57,6 +81,14 @@ public class Player : MonoBehaviour
         else if (Input.GetButtonUp("Block"))
         {
             m_animator?.SetBool("IsBlocking", false);
+        }
+
+        if (m_animator.GetBool("IsBlocking"))
+        {
+            if (!m_energy.ConsumeEnergyPerSecond(m_blockingEnergyConsumption, Time.deltaTime))
+            {
+                m_animator?.SetBool("IsBlocking", false);
+            }
         }
     }
 
@@ -145,7 +177,7 @@ public class Player : MonoBehaviour
         {
             var movingVelocity = new Vector3(right, 0, forward);
 
-            var cameraRotation = cameraRig.transform.eulerAngles;
+            var cameraRotation = m_cameraRig.transform.eulerAngles;
             movingVelocity = Quaternion.Euler(0, cameraRotation.y, 0) * movingVelocity;
 
             var rotateTo = Quaternion.FromToRotation(Vector3.forward, movingVelocity);
@@ -195,10 +227,14 @@ public class Player : MonoBehaviour
         var weapon = other.GetComponent<EnemyWeapon>();
         if (weapon != null)
         {
-            m_health.TakeDamage(weapon.GetDamage());
-            if (m_health.GetCurrentHitPoints() <= 0)
+            var isBlocking = m_animator.GetBool("IsBlocking");
+            if (!isBlocking)
             {
-                Destroy(gameObject);
+                m_health.TakeDamage(weapon.GetDamage());
+                if (m_health.GetCurrentHitPoints() <= 0)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }

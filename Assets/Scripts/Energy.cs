@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +41,7 @@ public class Energy : MonoBehaviour
         }
     }
 
-    public bool ConsumeEnergy(int energy)
+    public bool ConsumeEnergy(float energy)
     {
         if (energy <= m_currentEnergyPoints)
         {
@@ -52,5 +53,11 @@ public class Energy : MonoBehaviour
         {
             return false;
         }
+    }
+
+    internal bool ConsumeEnergyPerSecond(int energyPerSecond, float deltaTime)
+    {
+        float energy = energyPerSecond * deltaTime;
+        return ConsumeEnergy(energy);
     }
 }

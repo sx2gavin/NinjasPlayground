@@ -15,6 +15,9 @@ public class CameraRig : MonoBehaviour
     private Vector3 rotation;
     private Camera childCamera;
 
+    public Transform Target { get; set; }
+    public bool LockingTarget { get; set; } = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,15 +50,32 @@ public class CameraRig : MonoBehaviour
 
     private void RotateCameraRig()
     {
-        float x = Input.GetAxis("Mouse X");
-        float y = Input.GetAxis("Mouse Y");
+        if (LockingTarget)
+        {
+            var direction = Target.position - attachObject.transform.position;
+            direction.Normalize();
 
-        rotation.x -= y * rotationSpeed;
+            var angle = Mathf.Atan2(direction.x, direction.z);
+            var yawQuaternion = Quaternion.Euler(0, angle * Mathf.Rad2Deg, 0);
 
-        rotation.x = Mathf.Clamp(rotation.x, -90, 90);
-        rotation.y += x * rotationSpeed;
+            var pitchQuaternion = Quaternion.Euler(30, 0, 0);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotation), rotationSmoothness);
+            var result = yawQuaternion * pitchQuaternion;
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, result, rotationSmoothness);
+        }
+        else
+        {
+            float x = Input.GetAxis("Mouse X");
+            float y = Input.GetAxis("Mouse Y");
+
+            rotation.x -= y * rotationSpeed;
+
+            rotation.x = Mathf.Clamp(rotation.x, -90, 90);
+            rotation.y += x * rotationSpeed;
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotation), rotationSmoothness);
+        }
     }
 
     private void CheckForObjectsInFrontOfCamera()
