@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1357,6 +1357,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &344004631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6876320883473711988, guid: 0f9fa8c766a9a47958fae552beddd874,
+    type: 3}
+  m_PrefabInstance: {fileID: 6876320883635889968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &344004632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344004631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d473b056591ea534fb5d3bb306bcab4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_targetMarker: {fileID: 1496050068018171135}
 --- !u!43 &374143826
 Mesh:
   m_ObjectHideFlags: 0
@@ -2990,7 +3009,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6876320883635889968}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 344004631}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b21c4adea0f0b43c4bb176c06239f98e, type: 3}
@@ -3002,7 +3021,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1330
+  m_Name: pb_Mesh-2022
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -3413,7 +3432,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1338
+  m_Name: pb_Mesh-2030
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -3573,7 +3592,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1344
+  m_Name: pb_Mesh-2036
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -5513,7 +5532,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1332
+  m_Name: pb_Mesh-2024
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -5667,6 +5686,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1496050068018171135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1496050068018171135, guid: 0f9fa8c766a9a47958fae552beddd874,
+    type: 3}
+  m_PrefabInstance: {fileID: 6876320883635889968}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4082264628534985879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5699,6 +5730,11 @@ PrefabInstance:
       propertyPath: m_targetEnemy
       value: 
       objectReference: {fileID: 1177983949}
+    - target: {fileID: 4082264628536386946, guid: bcb42573a68424a4d8bfef61c861796e,
+        type: 3}
+      propertyPath: m_targetableObject
+      value: 
+      objectReference: {fileID: 344004632}
     - target: {fileID: 4082264628536386947, guid: bcb42573a68424a4d8bfef61c861796e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6043,10 +6079,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6691571736261231614, guid: 0f9fa8c766a9a47958fae552beddd874,
+    - target: {fileID: 1496050068018171135, guid: 0f9fa8c766a9a47958fae552beddd874,
         type: 3}
-      propertyPath: m_hitPoints
-      value: 300
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f9fa8c766a9a47958fae552beddd874, type: 3}

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] CameraRig m_cameraRig;
     [SerializeField] Throwable throwableWeapon;
     [SerializeField] Enemy m_targetEnemy;
+    [SerializeField] TargetableObject m_targetableObject;
     [SerializeField] float speed = 500.0f;
     [SerializeField] float acceleration = 2.0f;
     [SerializeField] float jumpHeight = 20.0f;
@@ -62,12 +63,14 @@ public class Player : MonoBehaviour
 
         if (m_isLockingTarget)
         {
-            m_cameraRig.Target = m_targetEnemy.transform;
+            m_cameraRig.Target = m_targetableObject.transform;
             m_cameraRig.LockingTarget = true;
+            m_targetableObject.IsTargetMarkerVisible = true;
         } 
         else
         {
             m_cameraRig.LockingTarget = false;
+            m_targetableObject.IsTargetMarkerVisible = false;
         }
     }
 

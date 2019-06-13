@@ -18,7 +18,6 @@ public class Enemy : MonoBehaviour
     Animator m_animator;
     Weapon m_weapon;
     Health m_health;
-
     bool m_isAttacking = false;
 
     private void Awake()
