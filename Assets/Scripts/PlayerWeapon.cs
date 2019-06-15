@@ -4,13 +4,4 @@ using UnityEngine;
 
 public class PlayerWeapon : Weapon
 {
-    public void ActivateCollider()
-    {
-
-    }
-
-    public void DeactivateCollider()
-    {
-
-    }
 }

@@ -2,6 +2,7 @@
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] ParticleSystem m_swordParticles;
     [SerializeField] int m_damage = 10;
 
     Collider m_collider;
@@ -29,5 +30,10 @@ public class Weapon : MonoBehaviour
     public void EndSwing()
     {
         m_collider.enabled = false;
+    }
+
+    public ParticleSystem GetSwordParticles()
+    {
+        return m_swordParticles;
     }
 }

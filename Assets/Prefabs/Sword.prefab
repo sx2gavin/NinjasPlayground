@@ -647,6 +647,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a0fa40d36294550818e775074dfebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_swordParticles: {fileID: 7517816700181941428, guid: 993e961b46a8d4a1abe81ece780651e6,
+    type: 3}
   m_damage: 10
 --- !u!1 &7308073744867495357
 GameObject:

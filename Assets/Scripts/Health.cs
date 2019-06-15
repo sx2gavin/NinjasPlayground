@@ -9,7 +9,6 @@ public class Health : MonoBehaviour
     [SerializeField] Slider m_healthSlider;
 
     int m_currentHitPoints;
-    Weapon m_weapon = null;
 
     private void Start()
     {

@@ -113,10 +113,24 @@ public class Enemy : MonoBehaviour
         if (weapon != null)
         {
             m_health.TakeDamage(weapon.GetDamage());
+            StartCoroutine(PauseGame(0.05f));
+            var swordParticles = weapon.GetSwordParticles();
+            Instantiate(swordParticles, weapon.transform.position, weapon.transform.rotation);
             if (m_health.GetCurrentHitPoints() <= 0)
             {
                 Destroy(gameObject);
             }
         }
+    }
+
+    private IEnumerator PauseGame(float seconds)
+    {
+        Time.timeScale = 0.0f;
+        float pauseEndTime = Time.realtimeSinceStartup + seconds;
+        while (Time.realtimeSinceStartup < pauseEndTime)
+        {
+            yield return 0;
+        }
+        Time.timeScale = 1.0f;
     }
 }
