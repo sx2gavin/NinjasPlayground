@@ -2,16 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BehaviorTree;
+using Action = BehaviorTree.Action;
+using System;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] Player m_player;
-    [SerializeField] float m_farDistanceThreshHold = 10f;
-    [SerializeField] float m_closeDistanceThreshHold = 3f;
-    [SerializeField] float m_attackRange = 3f;
-    [SerializeField] float m_movingSpeed = 200f;
-    [SerializeField] float m_interpolationRate = 0.5f;
+    [SerializeField] float m_closeDistanceThreshHold = 1f;
+    [SerializeField] float m_attackRange = 2f;
+    [SerializeField] float m_movingSpeed = 400f;
+    [SerializeField]
+    [Tooltip("Interpolate movement.")]
+    float m_movementInterpolation = 0.5f;
+    [SerializeField]
+    [Tooltip("If player is within the range, enemy will start moving towards it.")]
+    float m_playerDetectionRadius = 20f;
+    [SerializeField]
+    [Tooltip("Vision angle for enemy to detect player.")]
+    float m_detectionAngle = 90f;
 
+    Player m_player;
     Node m_behaviorTree;
     float m_distanceWithPlayer;
     Rigidbody m_rigidbodyComponent;
@@ -23,17 +32,57 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         DefineBehaviorTree();
-        m_player = FindObjectOfType<Player>();
     }
 
     private void DefineBehaviorTree()
     {
         // Behavior Tree definition
-        m_behaviorTree = new Selector();
+        m_behaviorTree = new Sequencor();
+        var findPlayer = new Action(FindPlayer);
+        m_behaviorTree.AddChild(findPlayer);
+        var actionNode = new Selector();
         var attackNode = new Action(Attack);
         var moveNode = new Action(Move);
-        (m_behaviorTree as Selector).Children.Add(attackNode);
-        (m_behaviorTree as Selector).Children.Add(moveNode);
+        actionNode.AddChild(attackNode);
+        actionNode.AddChild(moveNode);
+
+        m_behaviorTree.AddChild(actionNode);
+    }
+
+    private bool FindPlayer()
+    {
+        if (m_player == null)
+        {
+            var player = FindPlayerWithinRange();
+            if (player != null && CheckIfPlayerWithinVision(player))
+            {
+                m_player = player;
+            }
+        }
+
+        if (m_player != null)
+        {
+            
+            m_distanceWithPlayer = Vector3.Distance(m_player.transform.position, transform.position);
+            return true;
+        }
+        return false;
+    }
+
+    private Player FindPlayerWithinRange()
+    {
+        var colliders = Physics.OverlapSphere(transform.position, m_playerDetectionRadius);
+
+        foreach (var collider in colliders)
+        {
+            var player = collider.GetComponent<Player>();
+            if (player != null)
+            {
+                return player;
+            }
+        }
+
+        return default;
     }
 
     // Start is called before the first frame update
@@ -48,38 +97,53 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_player!= null)
+        m_behaviorTree.Perform();
+    }
+
+    private bool CheckIfPlayerWithinVision(Player player)
+    {
+        if (player != null)
         {
-            m_distanceWithPlayer = Vector3.Distance(m_player.transform.position, transform.position);
+            var playerDirection = player.transform.position - transform.position;
+            var angle = Vector3.Angle(playerDirection, transform.forward);
+            if (angle < m_detectionAngle)
+            {
+                return true;
+            }
         }
 
-        m_behaviorTree.Perform();
+        return false;
     }
 
     private bool Move()
     {
-        if (m_player != null && m_distanceWithPlayer < m_farDistanceThreshHold && m_distanceWithPlayer > m_closeDistanceThreshHold && !m_isAttacking)
+        if (m_player != null)
         {
-            var fromMeToTarget = m_player.transform.position - transform.position;
-            fromMeToTarget.y = 0;
-            fromMeToTarget.Normalize();
+            if (m_distanceWithPlayer < m_playerDetectionRadius && m_distanceWithPlayer > m_closeDistanceThreshHold && !m_isAttacking)
+            {
+                var fromMeToTarget = m_player.transform.position - transform.position;
+                fromMeToTarget.y = 0;
+                fromMeToTarget.Normalize();
 
-            var newRotation = Quaternion.FromToRotation(Vector3.forward, fromMeToTarget);
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 0.1f);
-            m_rigidbodyComponent.velocity = (1 - m_interpolationRate) *
-                m_rigidbodyComponent.velocity + m_interpolationRate * m_movingSpeed * fromMeToTarget * Time.deltaTime;
-            return true;
+                var newRotation = Quaternion.FromToRotation(Vector3.forward, fromMeToTarget);
+                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 0.1f);
+                var newVelocity = m_movementInterpolation * m_movingSpeed * fromMeToTarget * Time.deltaTime;
+                m_rigidbodyComponent.velocity = Vector3.Lerp(m_rigidbodyComponent.velocity, newVelocity, m_movementInterpolation);
+                return true;
+            }
+            else
+            {
+                m_rigidbodyComponent.velocity = Vector3.zero;
+                return false;
+            }
         }
-        else
-        {
-            m_rigidbodyComponent.velocity = Vector3.zero;
-            return false;
-        }
+
+        return false;
     }
 
     private bool Attack()
     {
-        if (m_distanceWithPlayer < m_attackRange)
+        if (m_player != null && m_distanceWithPlayer < m_attackRange)
         {
             m_rigidbodyComponent.velocity = Vector3.zero;
             m_animator?.Play("Attack");

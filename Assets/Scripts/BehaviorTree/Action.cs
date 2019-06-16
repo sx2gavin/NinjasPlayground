@@ -17,6 +17,12 @@ namespace BehaviorTree
         {
             return PerformableAction();
         }
+
+        public override void AddChild(Node child)
+        {
+            Debug.LogError("You are not suppose to call this method within ActionNode");
+            return;
+        }
     }
 }
 

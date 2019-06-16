@@ -1,23 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace BehaviorTree
 {
-    public class Selector : Node
+    public class Sequencor : Node
     {
         public List<Node> Children = new List<Node>();
 
         public override bool Perform()
         {
+            bool result = false;
             foreach (var childNode in Children)
             {
-                if (childNode.Perform())
-                {
-                    return true;
-                }
+                result |= childNode.Perform();
             }
-            return false;
+            return result;
         }
-
+        
         public override void AddChild(Node child)
         {
             Children.Add(child);
