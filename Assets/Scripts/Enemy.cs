@@ -118,7 +118,7 @@ public class Enemy : MonoBehaviour
             Instantiate(swordParticles, weapon.transform.position, weapon.transform.rotation);
             if (m_health.GetCurrentHitPoints() <= 0)
             {
-                Destroy(gameObject);
+                Destroy(gameObject, 1.0f);
             }
         }
     }

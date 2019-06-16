@@ -13,7 +13,10 @@ public class TargetableObject : MonoBehaviour
         set
         {
             _isTargetMarkerVisible = value;
-            m_targetMarker.enabled = value;
+            if (m_targetMarker != null)
+            {
+                m_targetMarker.enabled = value;
+            }
         }
     }
 }

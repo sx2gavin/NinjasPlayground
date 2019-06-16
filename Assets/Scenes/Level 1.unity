@@ -5820,7 +5820,7 @@ PrefabInstance:
       objectReference: {fileID: 1798766279}
     - target: {fileID: 32891158, guid: bcb42573a68424a4d8bfef61c861796e, type: 3}
       propertyPath: m_hitPoints
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 32891159, guid: bcb42573a68424a4d8bfef61c861796e, type: 3}
       propertyPath: m_energySlider
@@ -6177,6 +6177,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CullTransparentMesh
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691571736261231614, guid: 0f9fa8c766a9a47958fae552beddd874,
+        type: 3}
+      propertyPath: m_hitPoints
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f9fa8c766a9a47958fae552beddd874, type: 3}
