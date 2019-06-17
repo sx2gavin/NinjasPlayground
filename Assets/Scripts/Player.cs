@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] float dodgeDistance = 20.0f;
     [SerializeField] float dodgeSpeed = 10f;
     [SerializeField] [Range(0f, 1f)] float playerRotationSmoothness = 0.5f;
+    [SerializeField] float m_enemyLockingRange = 20.0f;
 
     [SerializeField] int m_dodgeEnergyConsumption = 10;
     [SerializeField] int m_attackEnergyConsumption = 20;
@@ -56,22 +57,39 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Lock Target"))
         {
-            // get the selected target here...
-
             m_isLockingTarget = !m_isLockingTarget;
         }
 
         if (m_isLockingTarget)
         {
-            m_cameraRig.Target = m_targetableObject.transform;
-            m_cameraRig.LockingTarget = true;
-            m_targetableObject.IsTargetMarkerVisible = true;
-        } 
+            var targetableObjects = FindNearbyTargetableObjects();
+            if (targetableObjects.Count == 0)
+            {
+                m_isLockingTarget = false;
+            }
+            m_cameraRig.Targeting(targetableObjects);
+        }
         else
         {
-            m_cameraRig.LockingTarget = false;
-            m_targetableObject.IsTargetMarkerVisible = false;
+            m_cameraRig.Targeting(null);
         }
+    }
+
+    private List<TargetableObject> FindNearbyTargetableObjects()
+    {
+        var colliders = Physics.OverlapSphere(transform.position, m_enemyLockingRange);
+
+        var targetableObjects = new List<TargetableObject>();
+        foreach (var collider in colliders)
+        {
+            var targetableObject = collider.GetComponent<TargetableObject>();
+            if (targetableObject != null)
+            {
+                targetableObjects.Add(targetableObject);
+            }
+        }
+
+        return targetableObjects;
     }
 
     private void Blocking()

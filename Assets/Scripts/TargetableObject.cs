@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TargetableObject : MonoBehaviour
 {
     [SerializeField] Image m_targetMarker;
-    private bool _isTargetMarkerVisible;
+    private bool _isTargetMarkerVisible = false;
     public bool IsTargetMarkerVisible
     {
         get { return _isTargetMarkerVisible; }

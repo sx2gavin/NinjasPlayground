@@ -213,5 +213,5 @@ MonoBehaviour:
   rotationSpeed: 10
   cameraDistance: 10
   rotationSmoothness: 0.5
-  closeUpCameraAdjustment: 0.2
+  closeUpCameraAdjustment: 0.5
   anchorHeight: 2
