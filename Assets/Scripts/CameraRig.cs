@@ -17,6 +17,7 @@ public class CameraRig : MonoBehaviour
     private Camera childCamera;
     private List<TargetableObject> m_targets = null;
     private TargetableObject m_lastTarget = null;
+    private Quaternion m_virtualRotation;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class CameraRig : MonoBehaviour
         }
 
         rotation = transform.rotation.eulerAngles;
+        m_virtualRotation = transform.rotation;
     }
 
     private void FollowAttachObject()
@@ -49,6 +51,36 @@ public class CameraRig : MonoBehaviour
 
     private void RotateCameraRig()
     {
+        UpdateRotationFromMouseInput();
+
+        var bestTarget = FindBestTargetToFocus(m_virtualRotation);
+
+        if (bestTarget != m_lastTarget)
+        {
+            if (m_lastTarget != null)
+            {
+                m_lastTarget.IsTargetMarkerVisible = false;
+            }
+
+            if (bestTarget != null || m_targets == null || !m_targets.Contains(m_lastTarget))
+            {
+                m_lastTarget = bestTarget;
+            }
+        }
+
+        if (m_lastTarget != null)
+        {
+            m_lastTarget.IsTargetMarkerVisible = true;
+            RotateToTargetableObject(m_lastTarget);
+        }
+        else
+        {
+            transform.rotation = m_virtualRotation * Quaternion.Euler(30, 0, 0);
+        }
+    }
+
+    private void UpdateRotationFromMouseInput()
+    {
         float x = Input.GetAxis("Mouse X");
         float y = Input.GetAxis("Mouse Y");
 
@@ -57,22 +89,7 @@ public class CameraRig : MonoBehaviour
         rotation.x = Mathf.Clamp(rotation.x, -90, 90);
         rotation.y += x * rotationSpeed;
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotation), rotationSmoothness);
-
-        var bestTarget = FindBestTargetToFocus();
-        if (bestTarget != m_lastTarget)
-        {
-            if (m_lastTarget != null)
-            {
-                m_lastTarget.IsTargetMarkerVisible = false;
-            }
-            m_lastTarget = bestTarget;
-        }
-        if (m_lastTarget != null)
-        {
-            m_lastTarget.IsTargetMarkerVisible = true;
-            RotateToTargetableObject(m_lastTarget);
-        }
+        m_virtualRotation = Quaternion.Slerp(m_virtualRotation, Quaternion.Euler(rotation), rotationSmoothness);
     }
 
     internal void Targeting(List<TargetableObject> targetableObjects)
@@ -80,7 +97,7 @@ public class CameraRig : MonoBehaviour
         m_targets = targetableObjects;
     }
 
-    private TargetableObject FindBestTargetToFocus()
+    private TargetableObject FindBestTargetToFocus(Quaternion rotation)
     {
         var smallestAngle = float.MaxValue;
         TargetableObject bestTarget = default;
@@ -88,13 +105,14 @@ public class CameraRig : MonoBehaviour
         {
             foreach (var target in m_targets)
             {
+                if (target == null) continue;
                 var direction = target.transform.position - transform.position;
                 direction.Normalize();
 
-                var cameraOverlookVector = Quaternion.Euler(30, 0, 0) * transform.forward;
+                var cameraOverlookVector = rotation * Vector3.forward;
 
                 var angle = Vector3.Angle(cameraOverlookVector, direction);
-                if (angle < 20f && angle < smallestAngle)
+                if (angle < 30f && angle < smallestAngle)
                 {
                     smallestAngle = angle;
                     bestTarget = target;
@@ -110,7 +128,7 @@ public class CameraRig : MonoBehaviour
         var groundAngle = Mathf.Atan2(direction.x, direction.z);
         var yawQuaternion = Quaternion.Euler(0, groundAngle * Mathf.Rad2Deg, 0);
         var pitchQuaternion = Quaternion.Euler(30, 0, 0);
-        var result = yawQuaternion;
+        var result = yawQuaternion * pitchQuaternion;
         transform.rotation = Quaternion.Slerp(transform.rotation, result, rotationSmoothness);
     }
 

@@ -10,8 +10,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] CameraRig m_cameraRig;
     [SerializeField] Throwable throwableWeapon;
-    [SerializeField] Enemy m_targetEnemy;
-    [SerializeField] TargetableObject m_targetableObject;
     [SerializeField] float speed = 500.0f;
     [SerializeField] float acceleration = 2.0f;
     [SerializeField] float jumpHeight = 20.0f;

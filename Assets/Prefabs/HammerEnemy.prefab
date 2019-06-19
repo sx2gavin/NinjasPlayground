@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.33}
-  m_SizeDelta: {x: 3, y: 3}
+  m_AnchoredPosition: {x: 0, y: 0.22}
+  m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4919895393279643484
 CanvasRenderer:
@@ -44,7 +44,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3215197443969238211}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &1496050068018171135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3215197443969238211}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -578,6 +578,7 @@ GameObject:
   - component: {fileID: 6691571736261231614}
   - component: {fileID: 196781125}
   - component: {fileID: 196781128}
+  - component: {fileID: 344004632}
   m_Layer: 2
   m_Name: HammerEnemy
   m_TagString: Untagged
@@ -638,7 +639,7 @@ MonoBehaviour:
   m_movingSpeed: 400
   m_movementInterpolation: 0.5
   m_playerDetectionRadius: 20
-  m_detectionAngle: 90
+  m_detectionAngle: 60
 --- !u!114 &6691571736261231614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45dc2afc4f8e749a7b6620913a3de279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hitPoints: 300
+  m_hitPoints: 50
   m_healthSlider: {fileID: 3903239362989975683}
 --- !u!54 &196781125
 Rigidbody:
@@ -683,6 +684,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &344004632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6876320883473711988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d473b056591ea534fb5d3bb306bcab4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_targetMarker: {fileID: 1496050068018171135}
 --- !u!1 &6876320884127134054
 GameObject:
   m_ObjectHideFlags: 0
