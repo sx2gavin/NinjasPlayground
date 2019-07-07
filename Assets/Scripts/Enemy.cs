@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     [Tooltip("Vision angle for enemy to detect player.")]
     float m_detectionAngle = 90f;
 
-    Player m_player;
+    GameObject m_player;
     Node m_behaviorTree;
     float m_distanceWithPlayer;
     Rigidbody m_rigidbodyComponent;
@@ -69,16 +69,15 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    private Player FindPlayerWithinRange()
+    private GameObject FindPlayerWithinRange()
     {
         var colliders = Physics.OverlapSphere(transform.position, m_playerDetectionRadius);
 
         foreach (var collider in colliders)
         {
-            var player = collider.GetComponent<Player>();
-            if (player != null)
+            if (collider.tag == "Player")
             {
-                return player;
+                return collider.gameObject;
             }
         }
 
@@ -100,7 +99,7 @@ public class Enemy : MonoBehaviour
         m_behaviorTree.Perform();
     }
 
-    private bool CheckIfPlayerWithinVision(Player player)
+    private bool CheckIfPlayerWithinVision(GameObject player)
     {
         if (player != null)
         {

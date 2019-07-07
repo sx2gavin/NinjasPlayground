@@ -7,8 +7,8 @@ public class CharacterMovement : MonoBehaviour
     private const float BIG_EPSILON = 0.00001f;
 
     [SerializeField] CameraRig m_cameraRig;
-    [SerializeField] float m_topSpeed = 10.0f;
-    [SerializeField] float acceleration = 1.0f;
+    [SerializeField] float m_topSpeed = 5.0f;
+    [SerializeField] float acceleration = 10.0f;
     [SerializeField] [Range(0f, 1f)] float playerRotationSmoothness = 0.5f;
     
     Animator m_animator;
