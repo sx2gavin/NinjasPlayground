@@ -71,14 +71,54 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Run' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Thigh_L' has scale animation that will be discarded.\n\t'Foot_L'
-      has scale animation that will be discarded.\n\nClip 'Walk' has import animation
+    animationImportWarnings: "\nClip 'Default Take' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Thigh_L' has scale animation that will be
+      discarded.\n\t'Calf_L' has scale animation that will be discarded.\n\t'Foot_L'
+      has scale animation that will be discarded.\n\nClip 'Idle' has import animation
       warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'Thigh_L' has scale animation that
-      will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+      on avatar to improve retargeting quality.\n\t'Calf_L' has scale animation that
+      will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\nClip
+      'Jump_Start' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Thigh_L'
+      has scale animation that will be discarded.\n\t'Calf_L' has scale animation
+      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\nClip
+      'Jumping' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Thigh_L'
+      has scale animation that will be discarded.\n\t'Calf_L' has scale animation
+      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\nClip
+      'Run' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Thigh_L'
+      has scale animation that will be discarded.\n\t'Calf_L' has scale animation
+      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\nClip
+      'Walk' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Thigh_L'
+      has scale animation that will be discarded.\n\t'Calf_L' has scale animation
+      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n"
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Default
+      Take':\n\tLeftLowerArm average position error 1.1 mm and maximum position error
+      3.1 mm at time 0: 4 (21.1%) Frame 4\n\tRightLowerArm average position error
+      1.0 mm and maximum position error 3.1 mm at time 0: 5 (26.3%) Frame 5\n\nRetargeting
+      quality report for clip 'Idle':\n\tLeftLowerArm average position error 3.1 mm
+      and maximum position error 3.1 mm at time 0: 9 (20.0%) Frame 9\n\tRightLowerArm
+      average position error 3.1 mm and maximum position error 3.1 mm at time 0: 3
+      (8.0%) Frame 3\n\nRetargeting quality report for clip 'Jump_Start':\n\tLeftLowerArm
+      average position error 1.8 mm and maximum position error 3.1 mm at time 0: 4
+      (36.4%) Frame 4\n\tRightLowerArm average position error 1.7 mm and maximum position
+      error 3.1 mm at time 0: 5 (45.5%) Frame 5\n\nRetargeting quality report for
+      clip 'Jumping':\n\tLeftLowerArm average position error 5.8 mm and maximum position
+      error 5.8 mm at time 0: 4 (19.0%) Frame 4\n\tRightLowerArm average position
+      error 5.6 mm and maximum position error 5.6 mm at time 0:13 (61.9%) Frame 13\n\nRetargeting
+      quality report for clip 'Run':\n\tLeftLowerArm average position error 0.9 mm
+      and maximum position error 2.8 mm at time 0:-1 (0.0%) Frame -1\n\tRightLowerArm
+      average position error 0.8 mm and maximum position error 2.8 mm at time 0: 7
+      (50.0%) Frame 7\n\nRetargeting quality report for clip 'T-Pose':\n\tLeftLowerArm
+      average position error 4.8 mm and maximum position error 4.8 mm at time 0:-1
+      (0.0%) Frame -1\n\tRightLowerArm average position error 4.8 mm and maximum position
+      error 4.8 mm at time 0:-1 (0.0%) Frame -1\n\nRetargeting quality report for
+      clip 'Walk':\n\tLeftLowerArm average position error 4.8 mm and maximum position
+      error 4.8 mm at time 0: 1 (12.5%) Frame 1\n\tRightLowerArm average position
+      error 4.8 mm and maximum position error 4.8 mm at time 0:16 (70.8%) Frame 16\n"
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
