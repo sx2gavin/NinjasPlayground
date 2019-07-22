@@ -9,7 +9,8 @@ public class CameraRig : MonoBehaviour
     [SerializeField] GameObject attachObject;
     [SerializeField] float rotationSpeed = 10.0f;
     [SerializeField] float cameraDistance = 10.0f;
-    [SerializeField][Range(0f,1f)] float rotationSmoothness = 0.5f;
+    [SerializeField] [Range(0f,1f)] float rotateLerp = 0.5f;
+    [SerializeField] [Range(0f, 1f)] float moveLerp = 0.5f;
     [SerializeField] float closeUpCameraAdjustment = 0.5f;
     [SerializeField] float anchorHeight = 2f;
 
@@ -39,10 +40,10 @@ public class CameraRig : MonoBehaviour
     private void FollowAttachObject()
     {
         var newPosition = attachObject.transform.position + new Vector3(0, anchorHeight, 0);
-        transform.position = Vector3.Lerp(transform.position, newPosition, 0.3f);
+        transform.position = Vector3.Lerp(transform.position, newPosition, moveLerp);
     }
     
-    void FixedUpdate()
+    void Update()
     {
         FollowAttachObject();
         RotateCameraRig();
@@ -89,7 +90,7 @@ public class CameraRig : MonoBehaviour
         rotation.x = Mathf.Clamp(rotation.x, -90, 90);
         rotation.y += x * rotationSpeed;
 
-        m_virtualRotation = Quaternion.Slerp(m_virtualRotation, Quaternion.Euler(rotation), rotationSmoothness);
+        m_virtualRotation = Quaternion.Slerp(m_virtualRotation, Quaternion.Euler(rotation), rotateLerp);
     }
 
     internal void Targeting(List<TargetableObject> targetableObjects)
@@ -129,7 +130,7 @@ public class CameraRig : MonoBehaviour
         var yawQuaternion = Quaternion.Euler(0, groundAngle * Mathf.Rad2Deg, 0);
         var pitchQuaternion = Quaternion.Euler(30, 0, 0);
         var result = yawQuaternion * pitchQuaternion;
-        transform.rotation = Quaternion.Slerp(transform.rotation, result, rotationSmoothness);
+        transform.rotation = Quaternion.Slerp(transform.rotation, result, rotateLerp);
     }
 
     private void CheckForObjectsInFrontOfCamera()

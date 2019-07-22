@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 363389008688189716}
+  - component: {fileID: 1955077850673276676}
+  - component: {fileID: 4111711996308584903}
   m_Layer: 0
   m_Name: katana
   m_TagString: Untagged
@@ -23,18 +25,42 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363389008688189723}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.4628735, y: 1.056562, z: -6.6809416}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalRotation: {x: -0.2720031, y: -0.07151722, z: -0.95908827, w: 0.032392263}
+  m_LocalPosition: {x: 1.8131514, y: 1.1928134, z: -4.3998594}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 363389009175570720}
-  - {fileID: 363389009034395099}
-  - {fileID: 363389008948812226}
-  - {fileID: 363389009379471371}
-  - {fileID: 363389008841195636}
+  - {fileID: 5425430015359260327}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1955077850673276676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363389008688189723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a0fa40d36294550818e775074dfebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_swordParticles: {fileID: 7517816700181941428, guid: 993e961b46a8d4a1abe81ece780651e6,
+    type: 3}
+  m_damage: 10
+--- !u!65 &4111711996308584903
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363389008688189723}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.06, z: 1.07}
+  m_Center: {x: 0.004, y: 0.0012, z: 0.68}
 --- !u!1 &363389008841195643
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,7 +73,7 @@ GameObject:
   - component: {fileID: 363389008841195638}
   - component: {fileID: 363389008841195637}
   m_Layer: 0
-  m_Name: tsuba.003
+  m_Name: tsuba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,11 +86,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363389008841195643}
-  m_LocalRotation: {x: 0.000000057326993, y: 0.71044695, z: -0.00000005787245, w: 0.7037507}
-  m_LocalPosition: {x: -0.29332876, y: -0.40999997, z: -0.025972843}
-  m_LocalScale: {x: 2.920167, y: 2.9201698, z: 2.920167}
+  m_LocalRotation: {x: 0.000000059604645, y: 0.71044695, z: -0.000000059604645, w: 0.7037507}
+  m_LocalPosition: {x: -0.29332793, y: -0.41000044, z: -0.025972523}
+  m_LocalScale: {x: 2.9201658, y: 2.9201694, z: 2.9201655}
   m_Children: []
-  m_Father: {fileID: 363389008688189716}
+  m_Father: {fileID: 5425430015359260327}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &363389008841195638
@@ -124,7 +150,7 @@ GameObject:
   - component: {fileID: 363389008948812220}
   - component: {fileID: 363389008948812227}
   m_Layer: 0
-  m_Name: handgrip1.003
+  m_Name: handgrip1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,11 +163,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363389008948812225}
-  m_LocalRotation: {x: 0.000000057326993, y: 0.71044695, z: -0.00000005787245, w: 0.7037507}
-  m_LocalPosition: {x: -0.29332876, y: -0.40999997, z: -0.025972843}
-  m_LocalScale: {x: 2.920167, y: 2.9201698, z: 2.920167}
+  m_LocalRotation: {x: 0.000000059604645, y: 0.71044695, z: -0.000000059604645, w: 0.7037507}
+  m_LocalPosition: {x: -0.29332793, y: -0.41000044, z: -0.025972523}
+  m_LocalScale: {x: 2.9201658, y: 2.9201694, z: 2.9201655}
   m_Children: []
-  m_Father: {fileID: 363389008688189716}
+  m_Father: {fileID: 5425430015359260327}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &363389008948812220
@@ -201,7 +227,7 @@ GameObject:
   - component: {fileID: 363389009034395093}
   - component: {fileID: 363389009034395092}
   m_Layer: 0
-  m_Name: blade_base.003
+  m_Name: blade_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,11 +240,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363389009034395098}
-  m_LocalRotation: {x: 0.000000057326993, y: 0.71044695, z: -0.00000005787245, w: 0.7037507}
-  m_LocalPosition: {x: -0.29332876, y: -0.40999997, z: -0.025972843}
-  m_LocalScale: {x: 2.920167, y: 2.9201698, z: 2.920167}
+  m_LocalRotation: {x: 0.000000059604645, y: 0.71044695, z: -0.000000059604645, w: 0.7037507}
+  m_LocalPosition: {x: -0.29332793, y: -0.41000044, z: -0.025972523}
+  m_LocalScale: {x: 2.9201658, y: 2.9201694, z: 2.9201655}
   m_Children: []
-  m_Father: {fileID: 363389008688189716}
+  m_Father: {fileID: 5425430015359260327}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &363389009034395093
@@ -278,7 +304,7 @@ GameObject:
   - component: {fileID: 363389009175570722}
   - component: {fileID: 363389009175570721}
   m_Layer: 0
-  m_Name: blade.003
+  m_Name: blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -291,11 +317,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363389009175570727}
-  m_LocalRotation: {x: 0.000000057326993, y: 0.71044695, z: -0.00000005787245, w: 0.7037507}
-  m_LocalPosition: {x: -1.98, y: -0.40999997, z: -0.010000229}
-  m_LocalScale: {x: 2.920167, y: 2.9201698, z: 2.920167}
+  m_LocalRotation: {x: 0.000000059604645, y: 0.71044695, z: -0.000000059604645, w: 0.7037507}
+  m_LocalPosition: {x: -1.9799993, y: -0.41000044, z: -0.010000069}
+  m_LocalScale: {x: 2.9201658, y: 2.9201694, z: 2.9201655}
   m_Children: []
-  m_Father: {fileID: 363389008688189716}
+  m_Father: {fileID: 5425430015359260327}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &363389009175570722
@@ -355,7 +381,7 @@ GameObject:
   - component: {fileID: 363389009379471365}
   - component: {fileID: 363389009379471364}
   m_Layer: 0
-  m_Name: handgrip2.003
+  m_Name: handgrip2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,11 +394,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363389009379471370}
-  m_LocalRotation: {x: 0.000000057326993, y: 0.71044695, z: -0.00000005787245, w: 0.7037507}
-  m_LocalPosition: {x: -0.29332876, y: -0.40999997, z: -0.025972843}
-  m_LocalScale: {x: 2.920167, y: 2.9201698, z: 2.920167}
+  m_LocalRotation: {x: 0.000000059604645, y: 0.71044695, z: -0.000000059604645, w: 0.7037507}
+  m_LocalPosition: {x: -0.29332793, y: -0.41000044, z: -0.025972523}
+  m_LocalScale: {x: 2.9201658, y: 2.9201694, z: 2.9201655}
   m_Children: []
-  m_Father: {fileID: 363389008688189716}
+  m_Father: {fileID: 5425430015359260327}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &363389009379471365
@@ -420,3 +446,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &2480953091375028783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5425430015359260327}
+  m_Layer: 0
+  m_Name: model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5425430015359260327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2480953091375028783}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_Children:
+  - {fileID: 363389009175570720}
+  - {fileID: 363389009034395099}
+  - {fileID: 363389008948812226}
+  - {fileID: 363389009379471371}
+  - {fileID: 363389008841195636}
+  m_Father: {fileID: 363389008688189716}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
